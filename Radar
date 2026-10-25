@@ -1,0 +1,23 @@
+-- Mengambil data pemain dan Backpack
+local Player = game:GetService("Players").LocalPlayer
+local Backpack = Player:WaitForChild("Backpack")
+
+-- Mengambil folder items di dalam ReplicatedStorage
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ItemsFolder = ReplicatedStorage:WaitForChild("items")
+
+-- Mencari objek Radar di dalam folder items
+local Radar = ItemsFolder:FindFirstChild("Radar")
+
+if Radar then
+    -- Menyalin (clone) Radar. Fungsi :Clone() di Roblox secara otomatis 
+    -- akan ikut menyalin SELURUH folder, script, UI, dan isi yang ada di dalam Radar tersebut.
+    local RadarClone = Radar:Clone()
+    
+    -- Memasukkan objek Radar beserta seluruh isinya ke Backpack Anda
+    RadarClone.Parent = Backpack
+    
+    print("[Sukses] HANYA 'Radar' (beserta seluruh isinya) yang dimasukkan ke Backpack!")
+else
+    warn("[Gagal] Objek 'Radar' tidak ditemukan di ReplicatedStorage.items")
+end
